@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>金桥焊材 - 专业经销商</title>
+  <!-- 引入 Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Font Awesome 图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- Tailwind CSS 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E40AF', // 深蓝色作为主色调
+            secondary: '#3B82F6', // 亮蓝色作为辅助色
+            neutral: '#F3F4F6', // 浅灰色作为背景色
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <!-- 自定义工具类 -->
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center space-x-2">
+          <span class="text-primary text-3xl"><i class="fa fa-welding-bridge"></i></span>
+          <span class="text-xl font-bold text-primary">金桥焊材</span>
+        </a>
+        
+        <!-- 桌面端导航 - 新增产品中心下拉菜单 -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="font-medium text-gray-700 hover:text-primary transition-custom">首页</a>
+          <!-- 产品中心下拉菜单 -->
+          <div class="relative group">
+            <a href="#products" class="font-medium text-gray-700 hover:text-primary transition-custom flex items-center">
+              产品中心 <i class="fa fa-angle-down ml-1 text-xs"></i>
+            </a>
+            <!-- 产品分类下拉列表 -->
+            <div class="absolute top-full left-0 mt-1 hidden group-hover:block bg-white shadow-lg rounded-lg w-80 p-4 z-10">
+              <div class="grid grid-cols-2 gap-2">
+                <a href="#product-list#general-electrode" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">普通焊条</a>
+                <a href="#product-list#solid-flux-cored-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">实心及药芯焊丝</a>
+                <a href="#product-list#submerged-wire-flux" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">埋弧焊丝及焊剂</a>
+                <a href="#product-list#aluminum-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">铝焊丝</a>
+                <a href="#product-list#stainless-electrode" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">不锈钢焊条</a>
+                <a href="#product-list#stainless-flux-cored-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">不锈钢药芯焊丝</a>
+                <a href="#product-list#multi-type-electrode" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">多品种焊条</a>
+                <a href="#product-list#multi-type-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">多品种焊丝</a>
+                <a href="#product-list#stainless-mig-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">不锈钢气保焊丝</a>
+                <a href="#product-list#stainless-tig-wire" class="py-2 px-3 hover:bg-primary/5 rounded transition-custom text-gray-700 hover:text-primary">不锈钢氩弧焊丝</a>
+              </div>
+            </div>
+          </div>
+          <a href="#about" class="font-medium text-gray-700 hover:text-primary transition-custom">关于我们</a>
+          <a href="#contact" class="font-medium text-gray-700 hover:text-primary transition-custom">联系我们</a>
+        </nav>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 - 新增产品中心子菜单 -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+      <div class="container mx-auto px-4 py-3 space-y-3">
+        <a href="#home" class="block py-2 text-gray-700 hover:text-primary transition-custom">首页</a>
+        <!-- 移动端产品中心折叠菜单 -->
+        <div class="border-b pb-2">
+          <button id="mobile-product-toggle" class="flex justify-between items-center w-full text-gray-700 hover:text-primary transition-custom py-2">
+            产品中心 <i class="fa fa-angle-down ml-1"></i>
+          </button>
+          <!-- 移动端产品分类列表 -->
+          <div id="mobile-product-list" class="hidden pl-4 space-y-2 mt-2">
+            <a href="#product-list#general-electrode" class="block py-1 text-gray-700 hover:text-primary transition-custom">普通焊条</a>
+            <a href="#product-list#solid-flux-cored-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">实心及药芯焊丝</a>
+            <a href="#product-list#submerged-wire-flux" class="block py-1 text-gray-700 hover:text-primary transition-custom">埋弧焊丝及焊剂</a>
+            <a href="#product-list#aluminum-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">铝焊丝</a>
+            <a href="#product-list#stainless-electrode" class="block py-1 text-gray-700 hover:text-primary transition-custom">不锈钢焊条</a>
+            <a href="#product-list#stainless-flux-cored-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">不锈钢药芯焊丝</a>
+            <a href="#product-list#multi-type-electrode" class="block py-1 text-gray-700 hover:text-primary transition-custom">多品种焊条</a>
+            <a href="#product-list#multi-type-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">多品种焊丝</a>
+            <a href="#product-list#stainless-mig-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">不锈钢气保焊丝</a>
+            <a href="#product-list#stainless-tig-wire" class="block py-1 text-gray-700 hover:text-primary transition-custom">不锈钢氩弧焊丝</a>
+          </div>
+        </div>
+        <a href="#about" class="block py-2 text-gray-700 hover:text-primary transition-custom">关于我们</a>
+        <a href="#contact" class="block py-2 text-gray-700 hover:text-primary transition-custom">联系我们</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区（首页） -->
+  <section id="home" class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-blue-50 to-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 mb-10 lg:mb-0">
+          <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gray-900 leading-tight text-shadow mb-4">
+            专业<span class="text-primary">焊材</span>解决方案
+          </h1>
+          <p class="text-lg text-gray-600 mb-8 max-w-xl">
+            作为金桥焊材的授权经销商，我们提供高品质的焊接材料和专业的技术支持，满足您的各种焊接需求。
+          </p>
+          <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <a href="#products" class="px-8 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-custom text-center">
+              浏览产品
+            </a>
+            <a href="#contact" class="px-8 py-3 border border-primary text-primary hover:bg-primary/5 font-medium rounded-lg transition-custom text-center">
+              联系我们
+            </a>
+          </div>
+        </div>
+        <div class="lg:w-1/2 flex justify-center">
+          <img src="https://picsum.photos/id/318/800/600" alt="金桥焊材产品展示" class="rounded-xl shadow-lg max-w-full h-auto object-cover transform hover:scale-[1.02] transition-transform duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品中心（入口页） -->
+  <section id="products" class="py-16 md:py-24 bg-neutral">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 mb-4">产品中心</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          我们提供金桥焊材全系列产品，覆盖十大核心分类，适用于各种焊接工艺和材料场景。
+        </p>
+      </div>
+      
+      <!-- 产品分类入口卡片 -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <!-- 普通焊条 -->
+        <a href="#product-list#general-electrode" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-welding-bridge text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">普通焊条</h3>
+          </div>
+        </a>
+        <!-- 实心及药芯焊丝 -->
+        <a href="#product-list#solid-flux-cored-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-industry text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">实心及药芯焊丝</h3>
+          </div>
+        </a>
+        <!-- 埋弧焊丝及焊剂 -->
+        <a href="#product-list#submerged-wire-flux" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-cogs text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">埋弧焊丝及焊剂</h3>
+          </div>
+        </a>
+        <!-- 铝焊丝 -->
+        <a href="#product-list#aluminum-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-bolt text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">铝焊丝</h3>
+          </div>
+        </a>
+        <!-- 不锈钢焊条 -->
+        <a href="#product-list#stainless-electrode" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-shield text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">不锈钢焊条</h3>
+          </div>
+        </a>
+        <!-- 不锈钢药芯焊丝 -->
+        <a href="#product-list#stainless-flux-cored-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-link text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">不锈钢药芯焊丝</h3>
+          </div>
+        </a>
+        <!-- 多品种焊条 -->
+        <a href="#product-list#multi-type-electrode" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-th text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">多品种焊条</h3>
+          </div>
+        </a>
+        <!-- 多品种焊丝 -->
+        <a href="#product-list#multi-type-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-random text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">多品种焊丝</h3>
+          </div>
+        </a>
+        <!-- 不锈钢气保焊丝 -->
+        <a href="#product-list#stainless-mig-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-tint text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">不锈钢气保焊丝</h3>
+          </div>
+        </a>
+        <!-- 不锈钢氩弧焊丝 -->
+        <a href="#product-list#stainless-tig-wire" class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group">
+          <div class="h-40 flex items-center justify-center bg-primary/5">
+            <i class="fa fa-fire text-primary text-4xl"></i>
+          </div>
+          <div class="p-4 text-center">
+            <h3 class="text-lg font-semibold text-gray-900">不锈钢氩弧焊丝</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品列表详情区（按分类展示） -->
+  <section id="product-list" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- 分类标题（默认隐藏，通过JS控制显示对应分类） -->
+      <div id="general-electrode" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">普通焊条</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            适用于各种碳钢、低合金钢的焊接，工艺性能优良，力学性能稳定，满足通用焊接场景需求。
+          </p>
+        </div>
+        <!-- 普通焊条产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t14.baidu.com/it/u=3355815179,166775607&fm=224&app=112&f=JPEG?w=500&h=500" alt="普通碳钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">J422 碳钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                酸性焊条，焊接工艺性好，脱渣容易，成型美观，适用于低碳钢结构的焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t13.baidu.com/it/u=3789222076,4000937819&fm=224&app=112&f=JPEG?w=500&h=500" alt="低合金钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">J507 低合金钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                碱性低氢型焊条，抗裂性能好，适用于中碳钢、低合金钢重要结构的焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t15.baidu.com/it/u=2762165310,2919727265&fm=224&app=112&f=JPEG?w=500&h=500" alt="高强度焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">J502 高强度焊条</h3>
+              <p class="text-gray-600 mb-4">
+                酸性焊条，交直流两用，适用于船舶、桥梁、车辆等低碳钢和低合金钢焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/b682b19bd0370a4d.jpg" alt="J506焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">J506 低氢钾型焊条</h3>
+              <p class="text-gray-600 mb-4">
+                碱性低氢钾型焊条，交直流两用，电弧稳定，脱渣容易，适用于中碳钢重要结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img14.360buyimg.com/pop/jfs/t1/130651/39/33649/59464/64a4f5e1F1d8bd1a2/16097805b1a076bb.jpg" alt="J427焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">J427 碱性低碳钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                碱性低氢型焊条，直流反接，焊缝力学性能优良，适用于低碳钢重要结构的焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 实心及药芯焊丝（示例，其他分类可按此格式扩展） -->
+      <div id="solid-flux-cored-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">实心及药芯焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            包括实芯焊丝和药芯焊丝，适用于MIG/MAG焊接方法，飞溅小，成型美观，效率高。
+          </p>
+        </div>
+        <!-- 实心及药芯焊丝产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img14.360buyimg.com/pop/jfs/t1/272246/34/22156/128881/6801b14bFc91ad467/c89aee573a5fb61b.jpg" alt="MG50-6实心焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG50-6 实心焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                低碳钢用实心焊丝，焊接工艺性优异，适用于MIG/MAG焊接，飞溅极小。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/02f5a7632a47cb8a.jpg" alt="CE71T-1药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">CE71T-1 药芯焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                二氧化碳气体保护药芯焊丝，适用于低碳钢和低合金钢的全位置焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img2.baidu.com/it/u=1918340186,3124930941&fm=253&fmt=auto&app=138&f=JPEG?w=515&h=500" alt="MG70S-6实心焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG70S-6 实心焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                高强度低合金钢焊丝，焊缝金属力学性能优异，适用于船舶、桥梁等重要结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img1.baidu.com/it/u=1779916876,1333935079&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500" alt="MG50-6实心焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG50-6 实心焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                低碳钢用实心焊丝，通用性强，焊接电弧稳定，适用于各种低碳钢结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://cbu01.alicdn.com/img/ibank/O1CN0113Zp3F1IPNDVpmzSM_!!2211622370885-0-cib.jpg" alt="TG50实心焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG50 实心焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                氩弧焊专用实心焊丝，成型美观，飞溅少，适用于TIG焊接工艺的低碳钢焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 埋弧焊丝及焊剂 -->
+      <div id="submerged-wire-flux" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">埋弧焊丝及焊剂</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            由焊丝和焊剂组成，适用于中厚板的高效焊接，熔敷率高，焊接质量稳定。
+          </p>
+        </div>
+        <!-- 埋弧焊丝及焊剂产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 新增 H08MnA纸盒 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img14.360buyimg.com/pop/jfs/t1/121608/35/22705/80262/623c1dc9Ea44fd408/02c6dcb6a6542981.jpg" alt="H08MnA纸盒" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">H08MnA 埋弧焊丝（纸盒装）</h3>
+              <p class="text-gray-600 mb-4">
+                高锰低合金钢埋弧焊丝，焊缝韧性好，抗裂性能优异，纸盒包装便于储存和使用。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 H10Mn2纸盒 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/ff3e50304e10e2cc.jpg?x-bce-process=image/watermark,image_cGljX2NyZWF0ZS93YXRlcm1hcmsvaW1hZ2VfZWRpdF9haV9jcmVhdGVfd2F0ZXJtYXJrLnBuZw==,P_10" alt="H10Mn2纸盒" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">H10Mn2 埋弧焊丝（纸盒装）</h3>
+              <p class="text-gray-600 mb-4">
+                高猛埋弧焊丝，熔敷效率高，成型美观，适用于中厚板低碳钢埋弧焊接，纸盒装更便捷。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 SJ101焊剂 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://img14.360buyimg.com/pop/jfs/t1/58400/25/10333/113508/5d785b95E901526ba/42ce1098c342d02b.jpg" alt="SJ101焊剂" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">SJ101 埋弧焊剂</h3>
+              <p class="text-gray-600 mb-4">
+                通用型埋弧焊剂，匹配多种焊丝，焊接工艺性好，适用于各种低碳钢结构埋弧焊。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 铝焊丝 -->
+      <div id="aluminum-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">铝焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            专用于铝合金焊接，流动性好，成型美观，适用于航空、汽车、轨道交通等领域。
+          </p>
+        </div>
+        <!-- 铝焊丝产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 新增气保SAI4043-1(铝硅) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/141b9e02e7cdad58.jpg" alt="气保SAI4043-1(铝硅)" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">气保SAI4043-1(铝硅)</h3>
+              <p class="text-gray-600 mb-4">
+                铝硅合金气保焊丝，流动性好，裂纹敏感性低，适用于铝合金薄板焊接，成型美观。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增气保SAI5356-1(铝镁) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t15.baidu.com/it/u=709993867,254762921&fm=224&app=112&f=JPEG?w=500&h=500" alt="气保SAI5356-1(铝镁)" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">气保SAI5356-1(铝镁)</h3>
+              <p class="text-gray-600 mb-4">
+                铝镁合金气保焊丝，耐腐蚀性优异，强度高，适用于船舶、航空航天铝合金焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增氩弧HS4043-1(铝硅) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/2a247d81ee0f9f55.jpg?x-bce-process=image/watermark,image_cGljX2NyZWF0ZS93YXRlcm1hcmsvaW1hZ2VfZWRpdF9haV9jcmVhdGVfd2F0ZXJtYXJrLnBuZw==,P_10" alt="氩弧HS4043-1(铝硅)" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">氩弧HS4043-1(铝硅)</h3>
+              <p class="text-gray-600 mb-4">
+                铝硅合金氩弧焊丝，焊接工艺性佳，焊缝成型好，适用于各种铝合金氩弧焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增氩弧HS5356-1(铝镁) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/376cd92528bd2ccc.jpg?x-bce-process=image/watermark,image_cGljX2NyZWF0ZS93YXRlcm1hcmsvaW1hZ2VfZWRpdF9haV9jcmVhdGVfd2F0ZXJtYXJrLnBuZw==,P_10" alt="氩弧HS5356-1(铝镁)" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">氩弧HS5356-1(铝镁)</h3>
+              <p class="text-gray-600 mb-4">
+                铝镁合金氩弧焊丝，强度高，耐腐蚀性好，适用于海洋工程、航空航天铝合金焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 不锈钢焊条 -->
+      <div id="stainless-electrode" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">不锈钢焊条</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            适用于各种不锈钢材质的焊接，焊缝金属耐腐蚀性能优异，力学性能稳定。
+          </p>
+        </div>
+        <!-- 不锈钢焊条产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 新增 A102(308-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/bb394276869cbd14.jpg?x-bce-process=image/watermark,image_cGljX2NyZWF0ZS93YXRlcm1hcmsvaW1hZ2VfZWRpdF9haV9jcmVhdGVfd2F0ZXJtYXJrLnBuZw==,P_10" alt="A102(308-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A102(308-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的Cr19Ni10不锈钢焊条，交直流两用，焊缝具有良好的抗裂性和耐腐蚀性。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 A002(308L-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/f42a69e311d1cb7d.jpg" alt="A002(308L-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A002(308L-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的超低碳Cr19Ni10不锈钢焊条，交直流两用，抗晶间腐蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 A302(309-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/6c129493cd5813ba.jpg" alt="A302(309-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A302(309-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的Cr23Ni13不锈钢焊条，交直流两用，用于焊接同类型不锈钢及异种钢。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 A312(309Mo-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/66dd88f6d054846f.jpg" alt="A312(309Mo-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A312(309Mo-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的Cr23Ni13Mo2不锈钢焊条，交直流两用，耐蚀性和抗裂性优良。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 A022(316L-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/c27a8ed12da0316a.jpg" alt="A022(316L-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A022(316L-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的超低碳Cr18Ni12Mo2不锈钢焊条，交直流两用，耐点蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 A402(310-16) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/08/a33c611f30109540.jpg" alt="A402(310-16)不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">A402(310-16) 不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                钛钙型药皮的Cr26Ni21纯奥氏体不锈钢焊条，交直流两用，耐高温性能优良。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增 S2209 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t14.baidu.com/it/u=3978002593,1780478308&fm=224&app=112&f=JPEG?w=500&h=500" alt="S2209双相不锈钢焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">S2209 双相不锈钢焊条</h3>
+              <p class="text-gray-600 mb-4">
+                双相不锈钢焊条，兼具奥氏体和铁素体不锈钢的优点，耐应力腐蚀和点蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!-- 不锈钢气保焊丝 -->
+      <div id="stainless-mig-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">不锈钢气保焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            专用于不锈钢MIG/MAG焊接，焊缝成型美观，耐腐蚀性优异，适用于各种不锈钢结构焊接。
+          </p>
+        </div>
+        <!-- 不锈钢气保焊丝产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 新增MG304 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/09/d0e3f18b8034fd7c.jpg" alt="MG304不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG304 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                适用于304不锈钢焊接，通用性强，焊接工艺性好，焊缝耐腐蚀性和力学性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增MG308 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/09/40a27a143e798cb6.jpg?x-bce-process=image/watermark,image_cGljX2NyZWF0ZS93YXRlcm1hcmsvaW1hZ2VfZWRpdF9haV9jcmVhdGVfd2F0ZXJtYXJrLnBuZw==,P_10" alt="MG308不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG308 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接AISI308、304等不锈钢，焊缝金属抗裂性好，成型美观，耐晶间腐蚀。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增MG308L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/09/9373b2f171b17188.jpg" alt="MG308L不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG308L 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                低碳型308焊丝，抗晶间腐蚀性能优异，适用于焊接超低碳不锈钢及重要耐腐蚀结构。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增MG309 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://ts1.tc.mm.bing.net/th/id/R-C.7802da64776c469b0b75c18242b1869c?rik=SAUyUb%2bOFu85zg&riu=http%3a%2f%2fwww.hdwjc.com%2fup%2f2020-03-23%2f20200323104651_38743.jpg&ehk=IopPRtIfJcRdogOIIF9dUc3%2fYIEx86cMTp1b4BJRyPA%3d&risl=&pid=ImgRaw&r=0" alt="MG309不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG309 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                适用于不锈钢与碳钢异种钢焊接，以及309、310等耐热不锈钢的焊接，抗裂性好。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增MG309L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/09/35cafbac5b71487f.jpg" alt="MG309L不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG309L 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                低碳型309焊丝，用于异种钢焊接及要求抗晶间腐蚀的不锈钢结构焊接，韧性优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增MG316L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/5f1fb9b01782e9f6.jpg" alt="MG316L不锈钢气保焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG316L 不锈钢气保焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                含钼超低碳不锈钢焊丝，耐点蚀、耐缝隙腐蚀性能优异，适用于化工、海洋环境焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 不锈钢氩弧焊丝分类（核心补充） -->
+      <div id="stainless-tig-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">不锈钢氩弧焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            高品质不锈钢氩弧焊丝，成型美观，焊接性能优异，适用于各类不锈钢结构的氩弧焊接。
+          </p>
+        </div>
+        <!-- 不锈钢氩弧焊丝产品列表（包含你指定的所有型号） -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- TG304 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t12.baidu.com/it/u=1754479047,3185169&fm=199&app=68&f=JPEG?w=750&h=1289&s=B1327094F2FFDFEF4AB22113030010DA" alt="TG304不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG304 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接18-8型奥氏体不锈钢，如304不锈钢结构，焊缝具有优良的耐腐蚀性和塑性。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG308 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/ec43085eefb99b7b.jpg" alt="TG308不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG308 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接AISI 304、304L等不锈钢，焊接工艺性好，焊缝金属抗晶间腐蚀性能优良。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline">              </div>
+            </div>
+          </div>
+          <!-- TG308L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/70366d6760850842.jpg" alt="TG308L不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG308L 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                超低碳型焊丝，用于焊接304L不锈钢，避免焊缝晶间腐蚀，适用于化工、食品设备焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG309 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t13.baidu.com/it/u=972839847,2116971186&fm=224&app=112&f=JPEG?w=500&h=500" alt="TG309不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG309 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接不锈钢与碳钢异种钢，或309不锈钢自身焊接，焊缝强度高，抗裂性能好。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG309L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/5bd18d21f1c5727d.jpg" alt="TG309L不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG309L 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                超低碳型，用于焊接309L不锈钢或不锈钢与低碳钢的异种接头，抗腐蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG316L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/0d3f748463f40cdb.jpg" alt="TG316L不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG316L 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                含钼超低碳焊丝，用于焊接316L不锈钢，耐点蚀、耐晶间腐蚀，适用于海洋、化工环境。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG321 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/1694ca23521513ec.jpg" alt="TG321不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG321 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                含钛稳定剂，用于焊接321不锈钢，耐高温性能好，适用于高温设备、锅炉管道焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG310 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/e23686720e6d2425.jpg" alt="TG310不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG310 不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                高铬镍焊丝，耐高温氧化，用于焊接310不锈钢或高温下工作的耐热不锈钢结构。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- TG2209 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/dd4f47c289180859.jpg" alt="TG2209不锈钢氩弧焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">TG2209 双相不锈钢氩弧焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                双相不锈钢焊丝，兼具奥氏体和铁素体特性，耐应力腐蚀、点蚀性能优异，适用于海洋工程。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      <!-- 不锈钢药芯焊丝 -->
+      <div id="stainless-flux-cored-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">不锈钢药芯焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            专用于不锈钢焊接，工艺性能优异，焊缝成型美观，适用于各种不锈钢结构的焊接。
+          </p>
+        </div>
+        <!-- 不锈钢药芯焊丝产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 新增JQ-308L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t14.baidu.com/it/u=2608986129,19565217&fm=224&app=112&f=JPEG?w=500&h=500" alt="JQ-308L不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-308L 不锈钢药芯焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接0Cr19Ni9、0Cr18Ni9等类型的奥氏体不锈钢，焊缝金属含碳量低，抗晶间腐蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-309L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/d0345d54b51f94ef.jpg" alt="JQ-309L不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-309L 不锈钢药芯焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接不锈钢与碳钢、低合金钢的异种钢接头，或用于焊接表面堆焊，抗裂性能好。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-316L -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/e973ff39f40f25d3.jpg" alt="JQ-316L不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-316L 不锈钢药芯焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接0Cr17Ni12Mo2等含钼奥氏体不锈钢，焊缝金属耐点蚀、耐应力腐蚀性能优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-2209 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/10/6e9991dea3f34d2f.jpg" alt="JQ-2209不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-2209 双相不锈钢药芯焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                用于焊接2205双相不锈钢，焊缝金属具有奥氏体+铁素体双相组织，强度高、耐蚀性优异。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-Y308L(简装) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/ee99565d0231d10f.jpg" alt="JQ-Y308L(简装)不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-Y308L 不锈钢药芯焊丝（简装）</h3>
+              <p class="text-gray-600 mb-4">
+                308L经济型简装版，用于常规奥氏体不锈钢焊接，性价比高，适用于一般焊接场景。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-Y309L(简装) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://cbu01.alicdn.com/img/ibank/O1CN012VOu9y2DVj5BDbRzr_!!2217991238615-0-cib.310x310.jpg" alt="JQ-Y309L(简装)不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-Y309L 不锈钢药芯焊丝（简装）</h3>
+              <p class="text-gray-600 mb-4">
+                309L经济型简装版，用于不锈钢与碳钢异种钢焊接，成本更低，满足普通焊接需求。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- 新增JQ-Y316L(简装) -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/e4c06d43cce03ba8.jpg" alt="JQ-Y316L(简装)不锈钢药芯焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">JQ-Y316L 不锈钢药芯焊丝（简装）</h3>
+              <p class="text-gray-600 mb-4">
+                316L经济型简装版，用于含钼不锈钢常规焊接，性价比突出，适用于非苛刻腐蚀环境。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     <!-- 多品种焊条分类 - 新增Z208和Z308 -->
+      <div id="multi-type-electrode" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">多品种焊条</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            涵盖铸铁、镍基、堆焊等特殊用途焊条，满足各类特种焊接场景的专业需求。
+          </p>
+        </div>
+        <!-- 多品种焊条产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Z208 铸铁焊条 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/c6202709341b397a.jpg" alt="Z208铸铁焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">Z208 铸铁焊条</h3>
+              <p class="text-gray-600 mb-4">
+                低碳钢芯、强石墨化型药皮的铸铁焊条，交直流两用，焊缝成型好，适用于灰口铸铁的补焊。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <!-- Z308 纯镍铸铁焊条 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/19d7286856824109.jpg" alt="Z308纯镍铸铁焊条" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">Z308 纯镍铸铁焊条</h3>
+              <p class="text-gray-600 mb-4">
+                纯镍焊芯、强石墨化型药皮的铸铁焊条，交直流两用，焊缝塑性好，适用于球墨铸铁、高强度铸铁补焊。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+     <!-- 多品种焊丝分类 -->
+      <div id="multi-type-wire" class="product-category hidden">
+        <div class="text-center mb-10">
+          <h2 class="text-[clamp(1.5rem,3vw,2.2rem)] font-bold text-gray-900 mb-4">多品种焊丝</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            涵盖多种特殊性能焊丝，适用于不同强度等级、不同工况的焊接需求，满足特种焊接场景。
+          </p>
+        </div>
+        <!-- 多品种焊丝产品列表 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://t15.baidu.com/it/u=2575174361,3031595857&fm=224&app=112&f=JPEG?w=500&h=500" alt="MG55-G焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG55-G 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                高强度气体保护焊丝，焊缝成型美观，力学性能稳定，适用于中等强度钢结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/18023233960e0de9.jpg" alt="MG60-G焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG60-G 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                高韧性气体保护焊丝，抗裂性能优异，适用于高强度低合金钢的焊接作业。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/9e3456395378f023.jpg" alt="MG70-G焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG70-G 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                超高强度焊丝，焊接工艺性好，适用于工程机械、矿山设备等重载结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/719038d0de8d9f53.jpg" alt="MG80-G焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG80-G 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                特高强度气体保护焊丝，低温韧性好，适用于高寒地区工程机械焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/8e32a5686411a09a.jpg" alt="MG90-G焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">MG90-G 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                极致强度焊丝，综合力学性能优异，适用于军工、航空航天等高端制造领域。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/21f4133265ba8787.jpg" alt="YJ601Ni1-1焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">YJ601Ni1-1 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                镍合金药芯焊丝，抗裂性能极佳，适用于低温压力容器、海洋工程结构焊接。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-custom group border">
+            <div class="h-56 overflow-hidden">
+              <img src="https://aisearch.cdn.bcebos.com/pic_create/2026-01-09/11/447629eb46f7a453.jpg" alt="YD212-1焊丝" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">YD212-1 焊丝</h3>
+              <p class="text-gray-600 mb-4">
+                耐磨堆焊药芯焊丝，硬度高，耐磨性好，适用于矿山机械、农机具等易磨损部件堆焊。
+              </p>
+              <div class="flex justify-between items-center">
+                <span class="text-primary font-bold"></span>
+                <a href="#" class="text-primary font-medium group-hover:underline"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+      <!-- 其他分类区域保持原有结构，此处省略（如需完整可补充） -->
+    </div>
+  </section>
+
+  <!-- 关于我们 -->
+  <section id="about" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-12">
+          <img src="https://picsum.photos/id/239/800/600" alt="公司团队" class="rounded-xl shadow-lg max-w-full h-auto object-cover">
+        </div>
+        <div class="lg:w-1/2">
+          <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 mb-4">关于我们</h2>
+          <p class="text-gray-600 mb-6">
+            我们是一家专业的焊接材料经销商，致力于为客户提供高品质的金桥焊材产品和全方位的技术支持。凭借多年的行业经验和专业的团队，我们已成为众多企业信赖的合作伙伴。
+          </p>
+          
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-primary/10 p-2 rounded-lg text-primary">
+                <i class="fa fa-check-circle text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">正品保障</h3>
+                <p class="text-gray-600">所有产品均为金桥焊材原厂正品，品质保证。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-primary/10 p-2 rounded-lg text-primary">
+                <i class="fa fa-check-circle text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">专业服务</h3>
+                <p class="text-gray-600">拥有专业的技术团队，提供焊接工艺咨询。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 bg-primary/10 p-2 rounded-lg text-primary">
+                <i class="fa fa-check-circle text-xl"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-lg font-semibold text-gray-900">快速配送</h3>
+                <p class="text-gray-600">完善的物流体系，确保产品及时送达客户手中。</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#contact" class="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-custom">
+            联系我们 <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我们 -->
+  <section id="contact" class="py-16 md:py-24 bg-neutral">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-gray-900 mb-4">联系我们</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          无论您有任何问题或需求，都可以通过以下方式联系我们，我们将竭诚为您服务。
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <div class="bg-white rounded-xl shadow-md p-8 h-full flex items-center justify-center">
+            <div class="text-center">
+              <i class="fa fa-phone-square text-primary text-5xl mb-6"></i>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">直接联系我们</h3>
+              <p class="text-gray-600 mb-4">您可通过以下联系方式与我们沟通，我们会及时回复</p>
+              <div class="flex justify-center space-x-4">
+                <a href="tel:021-57514426" class="text-primary hover:text-primary/80 transition-custom">
+                  <i class="fa fa-phone mr-2"></i>021-57514426
+                </a>
+                <a href="tel:15026635127" class="text-primary hover:text-primary/80 transition-custom">
+                  <i class="fa fa-mobile mr-2 text-xl"></i>15026635127
+                </a>
+              </div>
+              <div class="mt-4">
+                <a href="mailto:1132929943@qq.com" class="text-primary hover:text-primary/80 transition-custom">
+                  <i class="fa fa-envelope mr-2"></i>1132929943@qq.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <div class="bg-white rounded-xl shadow-md p-8 h-full">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">联系方式</h3>
+            
+            <div class="space-y-6 mb-8">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary">
+                  <i class="fa fa-map-marker text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-semibold text-gray-900">公司地址</h4>
+                  <p class="text-gray-600">上海市奉贤区奉城镇海淀路258号</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary">
+                  <i class="fa fa-phone text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-semibold text-gray-900">联系电话</h4>
+                  <p class="text-gray-600">021-57514426        15026635127</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary">
+                  <i class="fa fa-envelope text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-semibold text-gray-900">电子邮箱</h4>
+                  <p class="text-gray-600">1132929943@qq.com</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="flex-shrink-0 bg-primary/10 p-3 rounded-lg text-primary">
+                  <i class="fa fa-clock-o text-xl"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="text-lg font-semibold text-gray-900">营业时间</h4>
+                  <p class="text-gray-600">周一至周六: 8:00 - 17:00</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="text-lg font-semibold text-gray-900 mb-4">关注我们</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                  <i class="fa fa-weixin"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                  <i class="fa fa-weibo"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-custom">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <span class="text-white text-3xl"><i class="fa fa-welding-bridge"></i></span>
+            <span class="text-xl font-bold text-white">金桥焊材</span>
+          </div>
+          <p class="text-gray-400 mb-6">
+            专业的焊接材料经销商，提供高品质的产品和全方位的技术支持。
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-weixin"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-weibo"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-custom">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">快速链接</h3>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition-custom">首页</a></li>
+            <li><a href="#products" class="text-gray-400 hover:text-white transition-custom">产品中心</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-custom">关于我们</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-custom">联系我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">产品分类</h3>
+          <ul class="space-y-3">
+            <li><a href="#product-list#general-electrode" class="text-gray-400 hover:text-white transition-custom">普通焊条</a></li>
+            <li><a href="#product-list#solid-flux-cored-wire" class="text-gray-400 hover:text-white transition-custom">实心及药芯焊丝</a></li>
+            <li><a href="#product-list#submerged-wire-flux" class="text-gray-400 hover:text-white transition-custom">埋弧焊丝及焊剂</a></li>
+            <li><a href="#product-list#aluminum-wire" class="text-gray-400 hover:text-white transition-custom">铝焊丝</a></li>
+            <li><a href="#product-list#stainless-electrode" class="text-gray-400 hover:text-white transition-custom">不锈钢焊条</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold mb-6">联系我们</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-gray-400 mt-1 mr-3"></i>
+              <span class="text-gray-400">上海市奉贤区奉城镇海淀路258号</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-gray-400 mt-1 mr-3"></i>
+              <span class="text-gray-400">021-57514426        15026635127</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-gray-400 mt-1 mr-3"></i>
+              <span class="text-gray-400">1132929943@qq.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+        <p>© 2025 金桥焊材经销商 版权所有</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 交互脚本 -->
+  <script>
+    // 移动端菜单切换
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileProductToggle = document.getElementById('mobile-product-toggle');
+    const mobileProductList = document.getElementById('mobile-product-list');
+
+    // 移动端主菜单
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // 移动端产品中心子菜单
+    mobileProductToggle.addEventListener('click', () => {
+      mobileProductList.classList.toggle('hidden');
+      // 切换箭头方向
+      const icon = mobileProductToggle.querySelector('i');
+      icon.classList.toggle('fa-angle-down');
+      icon.classList.toggle('fa-angle-up');
+    });
+
+    // 导航栏滚动效果
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('py-2', 'shadow-md');
+        navbar.classList.remove('py-4', 'shadow-sm');
+      } else {
+        navbar.classList.add('py-4', 'shadow-sm');
+        navbar.classList.remove('py-2', 'shadow-md');
+      }
+    });
+
+    // 产品分类切换逻辑
+    document.addEventListener('DOMContentLoaded', () => {
+      // 初始定位到首页
+      window.location.hash = '#home';
+      
+      // 监听锚点变化，显示对应产品分类
+      window.addEventListener('hashchange', showActiveProductCategory);
+      // 初始加载时检查锚点
+      showActiveProductCategory();
+
+      function showActiveProductCategory() {
+        const hash = window.location.hash;
+        // 隐藏所有产品分类
+        document.querySelectorAll('.product-category').forEach(cat => {
+          cat.classList.add('hidden');
+        });
+
+        // 如果锚点包含产品列表标识，显示对应分类
+        if (hash.includes('#product-list#')) {
+          const categoryId = hash.split('#')[2];
+          const targetCategory = document.getElementById(categoryId);
+          if (targetCategory) {
+            targetCategory.classList.remove('hidden');
+            // 滚动到产品列表区域
+            document.getElementById('product-list').scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+
+      // 平滑滚动
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').split('#')[1];
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+            // 更新URL锚点
+            window.location.hash = this.getAttribute('href');
+            // 关闭移动端菜单
+            mobileMenu.classList.add('hidden');
+            mobileProductList.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
